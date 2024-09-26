@@ -83,3 +83,41 @@ if (userChoice === computerChoice) {
 } else {
   console.log("Invalid entry, try again");
 }
+
+
+/////////////////////
+
+const dolphinScore1 = 96;
+const dolphinScore2 = 108;
+const dolphinScore3 = 89;
+const pandaScore1 = 88;
+const pandaScore2 = 91;
+const pandaScore3 = 110;
+
+const totalDolphinScore = dolphinScore1 + dolphinScore2 + dolphinScore3;
+const totalPandaScore = pandaScore1 + pandaScore2 + pandaScore3;
+
+const avgDolphin = totalDolphinScore / 3;
+const avgPanda = totalPandaScore / 3;
+
+console.log(`Average dolphin score is ${avgDolphin}`);
+console.log(`Average panda score is ${avgPanda}`);
+
+if (avgDolphin > avgPanda) {
+  console.log("Dolphin Wins");
+} else if (avgDolphin < avgPanda) {
+  console.log("Panda Wins");
+} else {
+  console.log("This is a tie");
+}
+
+if (avgDolphin >= 100 && avgDolphin > avgPanda) {
+  console.log("Dolphin wins");
+} else if (avgPanda >= 100 && avgPanda > avgDolphin) {
+  console.log("Panda wins");
+} else if (avgDolphin >= 100 && avgPanda >= 100 && avgDolphin === avgPanda) {
+  console.log("This is a draw");
+} else {
+  console.log("NO WINNER");
+}
+
