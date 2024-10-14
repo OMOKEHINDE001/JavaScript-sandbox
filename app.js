@@ -1,78 +1,117 @@
-//write a function that takes in a string and conerts the first letter of every word to uppercase
-const firstLetterToCaps = (str) => {
-  const result = str.split(" ").map((word) => {
-    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
-  });
-};
-console.log(firstLetterToCaps("omokehinde is a good boy"));
+// // DOM - document object model
+// // how to select elements on the
+// // id, class, tag, combination
 
-//write a function that checks if the parameter is a number or not. return true or false
+// //get elements by ID
+// const text = document.getElementById("text");
+// console.log(text);
 
-const checkNumber = (arg) => typeof arg === "number";
-console.log(checkNumber("hllo"));
+// //get element by classname
+// const message = document.getElementsByClassName("message");
+// console.log(message);
 
-/////////////////////////////////////////////
-const currencyData = [
-  { from: "GBP", to: "NGN", rate: 2200 },
-  { from: "USD", to: "NGN", rate: 1700 },
-  { from: "EUR", to: "NGN", rate: 1900 },
-  { from: "YEN", to: "NGN", rate: 400 },
-];
+// // querySelector, querySelectorAll, - use css selectors; #, div, ., etc
+// const paragraph = document.querySelector("#text");
+// console.log(paragraph);
+// const paragraphs = document.querySelectorAll(".message");
+// console.log(paragraphs);
+// // nodelist- array methods can be performed
+// //paragraphs.map((paragraph) => {console.log(paragraph);});
 
-// Iterate over the currencydata and log a message "The exchange rate for USD to NGN is 1700"
+// const heading6 = document.querySelector("div h6");
 
-currencyData.map((currencyRate) => {
-  console.log(
-    `The Exchange Rate for ${curencyRate.from} to ${currencyRate.to} is ${currencyRate.rate}`
-  );
+// //textContent, innerText, innerHTML
+
+// const heading = document.querySelector("h1");
+// // console.log(heading.textContent);
+// //heading.textContent += "JS IS FUN";
+// console.log(heading.innerText);
+// heading.innerText += "JS IS GOOD";
+
+// const div = document.querySelector("div");
+// console.log(div.innerHTML);
+// div.innerHTML += "<p>okay</p>";
+
+// const name = "john";
+// div.innerHTML = `<h1> welcome ${name}</h1>`;
+
+// // change attributes
+// const beginPara = document.querySelector(".begin");
+// console.log(beginPara);
+// beginPara.className = "okay";
+// beginPara.id = "good";
+// beginPara.style.color = "red";
+// beginPara.style.backgroundColor = "green";
+
+// // interact with css classnames
+// const h1 = document.querySelector("h1");
+// h1.className = "success";
+// // classList - add or remove
+
+// const msg = document.querySelector("h2.message");
+// // console.log(msg.classList);
+// msg.classList.add("error");
+// msg.classList.remove("example");
+// console.log(msg.classList.contains("good"));
+
+// console.log(msg);
+
+// // create elements
+// const section = document.createElement("section");
+// section.innerHTML = "<h1>Created from JS</h1>";
+
+// //append it
+// const body = document.querySelector("body");
+// body.appendChild(section);
+
+// //remove element removeChild
+// //body.removeChild(section);
+
+// //replace child
+// const link = document.createElement("a");
+
+// link.innerText = "Visit Google";
+// // link.href = "https://google.com";
+// link.setAttribute("href", "https://google.com");
+
+// body.replaceChild(link, section);
+
+// //RESPONDING TO USERS INTERCTIONS
+// // event (click), event handler
+// //addEventListener - handle
+// const btn = document.querySelector("button");
+
+// btn.addEventListener("click", () => {
+//   console.log("btn clicked");
+//   body.style.backgroundColor = "aqua";
+// });
+
+//FORM HANDLING
+
+const form = document.querySelector("form");
+// submit
+form.addEventListener("submit", (event) => {
+  // default of forms when submitted is to refresh the page
+  event.preventDefault();
+
+  //select the input feilds
+  const username = document.querySelector(".username");
+  const password = document.querySelector(".password");
+
+  const usernameValue = username.value.trim();
+  const passwordValue = password.value;
+  const small = document.querySelector("small");
+  // console.log(usernameValue, passwordValue);
+  // validate the password field (password must not include password)
+  if (!usernameValue || !passwordValue) {
+    // display error message
+    small.textContent = "please fill all fields";
+  } else if (usernameValue.length < 5) {
+    small.textContent = "minimum username length is 5";
+  } else if (passwordValue.toLowerCase().includes("password")) {
+    small.innerText = "password must not include password";
+  } else {
+    //SUBMIT THE FORM
+    small.textContent = "Form Submitted";
+  }
 });
-
-////////////////////////////
-//write a function that returns the exchange rate for that currency pair or an appropriate message if the pair is not found
-const findCurrencyPair = (baseCurrency, toCurrency) => {
-  //search through the currencyDate to find a match
-  const pair = currencyData.find((currency) => {
-    return currency.from === baseCurrency && currency.to === toCurrency;
-  });
-
-  if (pair) {
-    console.log(
-      `The Exchange Rate for ${pair.from} to ${pair.to} is ${pair.rate}`
-    );
-  } else {
-    console.log("The currency pair cannot be found");
-  }
-};
-
-console.log(findCurrencyPair("YEN", "NGN"));
-
-//write a conversion function
-//2usd =
-//200 AUS
-const convertCurrency = (baseCurrency, toCurrency, amount) => {
-  const pair = currencyData.find((currency) => {
-    return currency.from === baseCurrency && currency.to === toCurrency;
-  });
-
-  if (pair) {
-    //conversion
-    console.log(
-      `${amount} ${pair.from} is equaivalent to ${amount * pair.rate} ${
-        pair.to
-      }`
-    );
-  } else {
-    console.log("Currency pair not found");
-  }
-};
-
-convertCurrency("GBP", "NGN", 500);
-
-//write a function to add to the currency date list
-//AUS NGN 300
-const addNewCurrency = (from, to, rate) => {
-  //push
-  currencyData.push((from, to, rate));
-  console.log(currencyData);
-};
-addNewCurrency("AUS", "NGN", "500");
